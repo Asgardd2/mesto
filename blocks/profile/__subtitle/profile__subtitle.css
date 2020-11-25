@@ -1,0 +1,13 @@
+.profile__subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (min-width: 768px) {
+    .profile__subtitle {
+        align-self: flex-start;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
