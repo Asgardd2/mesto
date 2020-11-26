@@ -5,3 +5,9 @@
     align-items: baseline;
     width: 100%;
 }
+
+@media screen and (min-width: 768px) {
+    .profile__title {
+        margin: 0 0 0 30px;
+    }
+}
