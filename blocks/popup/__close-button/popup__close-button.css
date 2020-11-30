@@ -12,5 +12,10 @@
     top: -39px;
     right: 1px;
     position: absolute;
+    z-index: 1;
+}
 
+.popup__close-button:hover {
+    opacity: .6;
+    cursor: pointer;
 }
