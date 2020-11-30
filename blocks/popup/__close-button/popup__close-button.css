@@ -5,9 +5,12 @@
     background-size: 50% cover;
     background-position: center;
     border: 0;
-    margin: 79px 19px 0 0;
     padding: 0;
+    margin: 0;
     height: 26px;
     width: 26px;
-    align-self: flex-end;
+    top: -39px;
+    right: 1px;
+    position: absolute;
+
 }

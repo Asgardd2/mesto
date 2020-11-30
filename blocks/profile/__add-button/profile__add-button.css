@@ -9,6 +9,18 @@
     border: 2px solid #ffffff;
 }
 
+@media screen and (max-width: 659px) {
+    .profile__add-button {
+        width: 282px;
+    }
+}
+
+@media screen and (min-width: 659px) and (max-width: 879px) {
+    .profile__add-button {
+        width: 581px;
+    }
+}
+
 @media screen and (min-width: 880px) {
     .profile__add-button {
         height: 50px;
@@ -16,3 +28,4 @@
         margin-left: auto;
     }
 }
+
