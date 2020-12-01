@@ -15,109 +15,108 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img src="./images/profile__avatar.jpg" alt="Фотография Жак-Ив Кусто" class="profile__avatar" />
-        
+        <img src="./images/profile__avatar.jpg" alt="Фотрафия Жак-Ив Кусто" class="profile__avatar" />
+
         <div class="profile__info">
-        <div class="profile__title">
-        <h1 class="profile__title-text">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button"></button>
+          <div class="profile__title">
+            <h1 class="profile__title-text">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+
+          </div>
+          <h2 class="profile__subtitle">Исследователь океана</h2>
 
         </div>
-        <h2 class="profile__subtitle">Исследователь океана</h2>
-       
-      </div>
-       
+
         <button class="profile__add-button"></button>
-    
+
       </section>
-        
+
       <section class="elements">
 
         <div class="element">
-          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря"/> 
+          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Карачаево-Черкессия
-             </h2>
-             <button class="element__heart element__heart_active"/>
+            <h2 class="element__text">
+              Карачаево-Черкессия
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус"/> 
+          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Гора Эльбрус
-             </h2>
-             <button class="element__heart"/>
+            <h2 class="element__text">
+              Гора Эльбрус
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай"/> 
+          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Домбай
-             </h2>
-             <button class="element__heart"/>
+            <h2 class="element__text">
+              Домбай
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус"/> 
+          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Гора Эльбрус
-             </h2>
-             <button class="element__heart"/>
+            <h2 class="element__text">
+              Гора Эльбрус
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай"/> 
+          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Домбай
-             </h2>
-             <button class="element__heart"/>
+            <h2 class="element__text">
+              Домбай
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря"/> 
+          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря" />
           <div class="element__rectangle">
-             <h2 class="element__text">
-               Карачаево-Черкессия
-             </h2>
-             <button class="element__heart"/>
+            <h2 class="element__text">
+              Карачаево-Черкессия
+            </h2>
+            <button class="element__heart" />
           </div>
         </div>
-        
+
       </section>
-      
+
 
     </main>
 
     <footer class="footer">
-        <p class="footer__copyright">
-          © 2020 Mesto Russia
-        </p>
-    
-  </footer>
+      <p class="footer__copyright">
+        © 2020 Mesto Russia
+      </p>
+
+    </footer>
 
   </div>
 
-  <div class="popup"> <!--popup_visible -->
-
-    <div class="popup__window">
+  <div class="popup">
+    <form class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__input popup__input_title" placeholder="Жак-Ив Кусто">
-      <input type="text" class="popup__input popup__input_subtitle" placeholder="Исследователь океана">
-      <button type="button" class="popup__save-button">Сохранить</button>
-    </div>
+      <input type="text" class="popup__input popup__input_title">
+      <input type="text" class="popup__input popup__input_subtitle">
+      <button type="submit" class="popup__save-button">Сохранить</button>
+    </form>
   </div>
-
+  <script src="scripts/script.js"></script> 
 </body>
 
 </html>

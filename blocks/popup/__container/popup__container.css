@@ -1,4 +1,4 @@
-.popup__window {
+.popup__container {
     background-color: #ffffff;
     margin: 13px 19px 0 19px;
     border-radius: 10px;
@@ -13,14 +13,14 @@
 }
 
 @media screen and (min-width: 660px) {
-    .popup__window {
+    .popup__container {
         width: 430px;
         height: 330px;
     }
 }
 
 @media screen and (min-width: 880px) {
-    .popup__window {
+    .popup__container {
         margin-top: 195px;
     }
 }

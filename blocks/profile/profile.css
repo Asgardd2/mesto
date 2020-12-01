@@ -4,13 +4,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 880px;
- 
+    width: 282px;
+
+}
+
+@media screen and (min-width: 660px) {
+    .profile {
+        width: 581px;
+    }
 }
 
 @media screen and (min-width: 880px) {
     .profile {
        flex-direction: row;
        padding: 40px 0;
+       width: 880px;
+       align-self: flex-start;
     }
 }
