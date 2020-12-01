@@ -1,6 +1,5 @@
 .popup__close-button {
     background-image: url(../../../images/close_icon.png);
-    background-color: black;
     background-repeat: no-repeat;
     background-size: 50% cover;
     background-position: center;
