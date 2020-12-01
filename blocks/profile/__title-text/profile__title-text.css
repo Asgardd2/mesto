@@ -9,11 +9,16 @@
     padding-left: 27px;
 }
 
+@media screen and (min-width: 660px) {
+    .profile__title-text {
+        padding-left: 0;
+    }
+}
+
 @media screen and (min-width: 880px) {
     .profile__title-text {
         font-size: 42px;
         line-height: 48px;
         width: auto;
-        padding-left: 0;
     }
 }
