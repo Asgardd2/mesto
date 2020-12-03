@@ -22,7 +22,7 @@
         align-self: flex-start;
         font-size: 18px;
         line-height: 22px;
-        margin: 0;
+        margin: 10px 0 0 0;
         max-width: 500px;
         text-align: left;
     }
