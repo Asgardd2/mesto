@@ -19,11 +19,11 @@
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__title-text">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button"></button>
+            <button aria-label="Edit" type="button" class="profile__edit-button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <div class="element">
@@ -32,7 +32,7 @@
             <h2 class="element__text">
               Карачаево-Черкессия
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
         <div class="element">
@@ -41,7 +41,7 @@
             <h2 class="element__text">
               Гора Эльбрус
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
         <div class="element">
@@ -50,7 +50,7 @@
             <h2 class="element__text">
               Домбай
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
         <div class="element">
@@ -59,7 +59,7 @@
             <h2 class="element__text">
               Гора Эльбрус
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
         <div class="element">
@@ -68,7 +68,7 @@
             <h2 class="element__text">
               Домбай
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
         <div class="element">
@@ -77,7 +77,7 @@
             <h2 class="element__text">
               Карачаево-Черкессия
             </h2>
-            <button type="button" class="element__heart"></button>
+            <button aria-label="Like" type="button" class="element__heart"></button>
           </div>
         </div>
       </section>
@@ -93,10 +93,10 @@
 
   <div class="popup">
     <form name="formToChangeProfile" class="popup__container">
-      <button type="button" class="popup__close-button"></button>
+      <button aria-label="Close" type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__input popup__input_type_title">
-      <input type="text" class="popup__input popup__input_type_subtitle">
+      <input placeholder="Заголовок" required type="text" class="popup__input popup__input_type_title">
+      <input placeholder="Подзаголовок" required type="text" class="popup__input popup__input_type_subtitle">
       <button type="submit" class="popup__save-button">Сохранить</button>
     </form>
   </div>
