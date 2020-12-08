@@ -26,60 +26,7 @@
         <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <div class="element">
-          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Карачаево-Черкессия
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Гора Эльбрус
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Домбай
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/element-elbrus.png" class="element__image" alt="Фотография горы Эльбрус" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Гора Эльбрус
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/element-dombai.png" class="element__image" alt="Фотография Домбай" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Домбай
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/element-karachaevo.png" class="element__image" alt="Фотография монастыря" />
-          <div class="element__rectangle">
-            <h2 class="element__text">
-              Карачаево-Черкессия
-            </h2>
-            <button aria-label="Like" type="button" class="element__heart"></button>
-          </div>
-        </div>
+          <!--Сюда подставляем с помощью js (при открытии - инициализация из массива js скрипта) -->
       </section>
     </main>
 
@@ -100,6 +47,16 @@
       <button type="submit" class="popup__save-button">Сохранить</button>
     </form>
   </div>
+
+  <template class="template-card">
+    <div class="element">
+      <img src="" class="element__image" alt="" />
+      <div class="element__rectangle">
+        <h2 class="element__text"></h2>
+        <button aria-label="Like" type="button" class="element__heart"></button>
+      </div>
+    </div>
+  </template>
 
   <script src="scripts/script.js"></script>
 

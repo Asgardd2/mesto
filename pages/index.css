@@ -39,3 +39,5 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input/_type/popup__input_subtitle.css);
 @import url(../blocks/popup/__input/_type/popup__input_title.css);
+
+@import url(../blocks/template-card/template-card.css);
