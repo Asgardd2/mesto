@@ -6,12 +6,18 @@ const popupCardNode = document.querySelector(".popup_type_card");
 
 const popupProfileCloseButtonNode = popupProfileNode.querySelector(".popup__close-button");
 const popupAddCardCloseButtonNode = popupCardNode.querySelector(".popup__close-button");
+const popupProfileSubmitButtonNode = popupProfileNode.querySelector(".popup__container"); 
+const popupCardSubmitButtonNode = popupCardNode.querySelector(".popup__container"); 
 
 const profileTitleTextNode = document.querySelector(".profile__title-text");
 const profileSubtitleTextNode = document.querySelector(".profile__subtitle");
-const popupInputTitleNode = document.querySelector(".popup__input_profile-title");
-const popupInputSubTitleNode = document.querySelector(".popup__input_profile-subtitle");
-const popupContainerNode = document.querySelector(".popup__container");  
+
+const popupInputProfileTitleNode = popupProfileNode.querySelector(".popup__input_type_profile-title");
+const popupInputProfileSubTitleNode = popupProfileNode.querySelector(".popup__input_type_profile-subtitle");
+
+const popupInputCardTitleNode = popupCardNode.querySelector(".popup__input_type_card-title");
+const popupInputCardLinkNode = popupCardNode.querySelector(".popup__input_type_card-img-link");
+ 
 const elementHeartNode = document.querySelector(".element__heart");  
 const templateCardElement = document.querySelector(".template-card"); 
 const containerCards = document.querySelector(".elements"); 
@@ -51,11 +57,13 @@ function openPopup(event) {
     const classOfPopup = event.target.classList.value;
     switch (classOfPopup) {
         case 'profile__edit-button':
-            popupInputTitleNode.value = profileTitleTextNode.textContent;
-            popupInputSubTitleNode.value = profileSubtitleTextNode.textContent;
+            popupInputProfileTitleNode.value = profileTitleTextNode.textContent;
+            popupInputProfileSubTitleNode.value = profileSubtitleTextNode.textContent;
             popupProfileNode.classList.add('popup_opened');
             break;
         case 'profile__add-button':
+            popupInputCardTitleNode.value = '';
+            popupInputCardLinkNode.value ='';
             popupCardNode.classList.add('popup_opened');
             break;
     }
@@ -64,10 +72,23 @@ function openPopup(event) {
 }
 
 function submitChanges(evt) {
+
     evt.preventDefault();
-    profileTitleTextNode.textContent = popupInputTitleNode.value;
-    profileSubtitleTextNode.textContent = popupInputSubTitleNode.value;
-    closePopup();
+    
+    if (evt.target.parentNode.classList.contains('popup_type_profile')) {
+        profileTitleTextNode.textContent = popupInputProfileTitleNode.value;
+        profileSubtitleTextNode.textContent = popupInputProfileSubTitleNode.value;
+        closePopup(evt);
+    }
+
+    if (evt.target.parentNode.classList.contains('popup_type_card')) {
+        let newCard = {};
+        newCard.name = popupInputCardTitleNode.value; 
+        newCard.link = popupInputCardLinkNode.value;
+        addCard(newCard);
+        closePopup(evt);
+    }
+
 }
 
 function addCard(cardObject) {
@@ -77,21 +98,23 @@ function addCard(cardObject) {
     titleElement.textContent = cardObject.name;
     imageElement.setAttribute('src',cardObject.link);
     imageElement.setAttribute('alt',cardObject.name);
-    containerCards.append(newCard);
+    containerCards.prepend(newCard);
 }
 
 function initDefaultCards() {
-    const listCards = initialCards.forEach(addCard);
+    const listCards = initialCards.reverse().forEach(addCard);
 }
 
 profileEditButtonNode.addEventListener('click',openPopup);
+addCardButtonNode.addEventListener('click',openPopup);
 
 popupAddCardCloseButtonNode.addEventListener('click',closePopup);
 popupProfileCloseButtonNode.addEventListener('click',closePopup);
 
-popupContainerNode.addEventListener('submit',submitChanges);
+popupProfileSubmitButtonNode.addEventListener('submit',submitChanges);
+popupCardSubmitButtonNode.addEventListener('submit',submitChanges);
 
-addCardButtonNode.addEventListener('click',openPopup);
+
 
 //Наполняем дефолтными карточками
 initDefaultCards();
