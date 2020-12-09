@@ -20,6 +20,7 @@
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__bin/element__bin.css);
 @import url(../blocks/element/__heart/element__heart.css);
 @import url(../blocks/element/__heart/_active/element__heart_active.css);
 

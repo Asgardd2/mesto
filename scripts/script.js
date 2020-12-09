@@ -49,8 +49,8 @@ const initialCards = [
     }
 ]; 
 
-function closePopup(event) {
-    event.target.parentElement.parentElement.classList.remove('popup_opened');
+function closePopup(popup_act) {
+    popup_act.classList.remove('popup_opened');
 }
 
 function openPopup(event) {
@@ -78,7 +78,7 @@ function submitChanges(evt) {
     if (evt.target.parentNode.classList.contains('popup_type_profile')) {
         profileTitleTextNode.textContent = popupInputProfileTitleNode.value;
         profileSubtitleTextNode.textContent = popupInputProfileSubTitleNode.value;
-        closePopup(evt);
+        closePopup(event.target.parentElement.parentElement);
     }
 
     if (evt.target.parentNode.classList.contains('popup_type_card')) {
@@ -86,7 +86,7 @@ function submitChanges(evt) {
         newCard.name = popupInputCardTitleNode.value; 
         newCard.link = popupInputCardLinkNode.value;
         addCard(newCard);
-        closePopup(evt);
+        closePopup(event.target.parentElement);
     }
 
 }
@@ -96,16 +96,21 @@ function addCard(cardObject) {
     const titleElement = newCard.querySelector('.element__text');
     const imageElement = newCard.querySelector('.element__image');
     const elementHeartNode = newCard.querySelector('.element__heart');
+    const elementBinNode = newCard.querySelector('.element__bin');
     titleElement.textContent = cardObject.name;
     imageElement.setAttribute('src',cardObject.link);
     imageElement.setAttribute('alt',cardObject.name); 
+    elementBinNode.addEventListener('click', deleteCard);
     elementHeartNode.addEventListener('click', function() {
         elementHeartNode.classList.toggle('element__heart_active');
     })
+
     containerCards.prepend(newCard);
 }
 
-
+function deleteCard(event) {
+    event.target.closest('.element').remove()
+}
 
 function initDefaultCards() {
     const listCards = initialCards.reverse().forEach(addCard);
