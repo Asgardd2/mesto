@@ -18,7 +18,7 @@ const popupInputProfileSubTitleNode = popupProfileNode.querySelector(".popup__in
 const popupInputCardTitleNode = popupCardNode.querySelector(".popup__input_type_card-title");
 const popupInputCardLinkNode = popupCardNode.querySelector(".popup__input_type_card-img-link");
  
-const elementHeartNode = document.querySelector(".element__heart");  
+
 const templateCardElement = document.querySelector(".template-card"); 
 const containerCards = document.querySelector(".elements"); 
 
@@ -95,14 +95,21 @@ function addCard(cardObject) {
     const newCard = templateCardElement.content.cloneNode(true);
     const titleElement = newCard.querySelector('.element__text');
     const imageElement = newCard.querySelector('.element__image');
+    const elementHeartNode = newCard.querySelector('.element__heart');
     titleElement.textContent = cardObject.name;
     imageElement.setAttribute('src',cardObject.link);
-    imageElement.setAttribute('alt',cardObject.name);
+    imageElement.setAttribute('alt',cardObject.name); 
+    elementHeartNode.addEventListener('click', function() {
+        elementHeartNode.classList.toggle('element__heart_active');
+    })
     containerCards.prepend(newCard);
 }
 
+
+
 function initDefaultCards() {
     const listCards = initialCards.reverse().forEach(addCard);
+    
 }
 
 profileEditButtonNode.addEventListener('click',openPopup);
@@ -113,8 +120,6 @@ popupProfileCloseButtonNode.addEventListener('click',closePopup);
 
 popupProfileSubmitButtonNode.addEventListener('submit',submitChanges);
 popupCardSubmitButtonNode.addEventListener('submit',submitChanges);
-
-
 
 //Наполняем дефолтными карточками
 initDefaultCards();
