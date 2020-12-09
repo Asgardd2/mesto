@@ -1,11 +1,16 @@
 //Открытие и закрытие попапа
 const profileEditButtonNode = document.querySelector(".profile__edit-button");
-const popupCloseButtonNode = document.querySelector(".popup__close-button");
-const popupNode = document.querySelector(".popup");
+const addCardButtonNode = document.querySelector(".profile__add-button");
+const popupProfileNode = document.querySelector(".popup_type_profile");
+const popupCardNode = document.querySelector(".popup_type_card");
+
+const popupProfileCloseButtonNode = popupProfileNode.querySelector(".popup__close-button");
+const popupAddCardCloseButtonNode = popupCardNode.querySelector(".popup__close-button");
+
 const profileTitleTextNode = document.querySelector(".profile__title-text");
 const profileSubtitleTextNode = document.querySelector(".profile__subtitle");
-const popupInputTitleNode = document.querySelector(".popup__input_type_title");
-const popupInputSubTitleNode = document.querySelector(".popup__input_type_subtitle");
+const popupInputTitleNode = document.querySelector(".popup__input_profile-title");
+const popupInputSubTitleNode = document.querySelector(".popup__input_profile-subtitle");
 const popupContainerNode = document.querySelector(".popup__container");  
 const elementHeartNode = document.querySelector(".element__heart");  
 const templateCardElement = document.querySelector(".template-card"); 
@@ -38,14 +43,24 @@ const initialCards = [
     }
 ]; 
 
-function closePopup() {
-    popupNode.classList.remove('popup_opened');
+function closePopup(event) {
+    event.target.parentElement.parentElement.classList.remove('popup_opened');
 }
 
-function openPopup() {
-    popupInputTitleNode.value = profileTitleTextNode.textContent;
-    popupInputSubTitleNode.value = profileSubtitleTextNode.textContent;
-    popupNode.classList.add('popup_opened');
+function openPopup(event) {
+    const classOfPopup = event.target.classList.value;
+    switch (classOfPopup) {
+        case 'profile__edit-button':
+            popupInputTitleNode.value = profileTitleTextNode.textContent;
+            popupInputSubTitleNode.value = profileSubtitleTextNode.textContent;
+            popupProfileNode.classList.add('popup_opened');
+            break;
+        case 'profile__add-button':
+            popupCardNode.classList.add('popup_opened');
+            break;
+    }
+
+    
 }
 
 function submitChanges(evt) {
@@ -71,9 +86,12 @@ function initDefaultCards() {
 
 profileEditButtonNode.addEventListener('click',openPopup);
 
-popupCloseButtonNode.addEventListener('click',closePopup);
+popupAddCardCloseButtonNode.addEventListener('click',closePopup);
+popupProfileCloseButtonNode.addEventListener('click',closePopup);
 
 popupContainerNode.addEventListener('submit',submitChanges);
+
+addCardButtonNode.addEventListener('click',openPopup);
 
 //Наполняем дефолтными карточками
 initDefaultCards();
