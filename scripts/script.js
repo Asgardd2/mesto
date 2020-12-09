@@ -104,7 +104,9 @@ function openPopup(event) {
     case "element__image":
       popupImgElNode.setAttribute("src", event.target.src);
       popupImgElNode.setAttribute("alt", event.target.alt);
-      popupImgDescrElNode.textContent = event.target.parentElement.querySelector(".element__rectangle").querySelector(".element__text").textContent;
+      popupImgDescrElNode.textContent = event.target.parentElement
+        .querySelector(".element__rectangle")
+        .querySelector(".element__text").textContent;
       popupImgNode.classList.add("popup_opened");
       break;
   }
@@ -128,6 +130,10 @@ function submitChanges(evt) {
   }
 }
 
+function changeLikeHeart(evt) {
+  evt.target.classList.toggle("element__heart_active");
+}
+
 function addCard(cardObject) {
   const newCard = templateCardElement.content.cloneNode(true);
   const titleElement = newCard.querySelector(".element__text");
@@ -139,14 +145,18 @@ function addCard(cardObject) {
   imageElement.setAttribute("alt", cardObject.name);
   elementBinNode.addEventListener("click", deleteCard);
   imageElement.addEventListener("click", openPopup);
-  elementHeartNode.addEventListener("click", function () {
-    elementHeartNode.classList.toggle("element__heart_active");
-  });
+  elementHeartNode.addEventListener("click", changeLikeHeart);
 
   containerCards.prepend(newCard);
 }
 
 function deleteCard(event) {
+  const imageElement = event.target.parentNode.querySelector(".element__image");
+  const elementHeartNode = event.target.parentNode.querySelector(".element__heart");
+  const elementBinNode = event.target.parentNode.querySelector(".element__bin");
+  elementBinNode.removeEventListener("click", deleteCard);
+  imageElement.removeEventListener("click", openPopup);
+  elementHeartNode.removeEventListener("click", changeLikeHeart);
   event.target.closest(".element").remove();
 }
 
