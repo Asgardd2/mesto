@@ -7,6 +7,12 @@
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     align-items: center;
-    display: none;
     font-family: "Inter", "Arial", sans-serif;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    opacity: 0;
+    transition: visibility .3s, opacity .3s linear;
 }

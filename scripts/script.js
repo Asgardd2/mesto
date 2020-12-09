@@ -83,9 +83,9 @@ function openPopup(event) {
             popupImgDescrElNode.textContent = event.target.parentElement.querySelector('.element__rectangle').querySelector('.element__text').textContent;
             popupImgNode.classList.add('popup_opened');
             break;
-    }
 
-    
+        
+    }
 }
 
 function submitChanges(evt) {
