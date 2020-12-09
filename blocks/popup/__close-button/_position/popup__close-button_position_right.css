@@ -1,0 +1,16 @@
+.popup__close-button_position_right {
+    height: 26px;
+    width: 26px;
+    top: -28px;
+    right: -28px;
+    background-size: cover;
+}
+@media screen and (min-width: 660px) {
+    .popup__close-button_position_right {
+        height: 41px;
+        width: 41px;
+        top: -44px;
+        right: -44px;
+    }
+}
+
