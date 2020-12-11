@@ -2,8 +2,7 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 900;
-    text-align: center;
-    margin: 25px 0 45px 0;
+    text-align: left;
 }
 
 @media screen and (min-width: 880px) {
