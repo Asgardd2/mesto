@@ -51,35 +51,10 @@ function closePopupForm(event) {
   );
 }
 
-<<<<<<< HEAD
-function openPopup(event) {
-  const classOfPopup = event.target.classList.value;
-  switch (classOfPopup) {
-    case "profile__edit-button":
-      popupInputProfileTitleNode.value = profileTitleTextNode.textContent;
-      popupInputProfileSubTitleNode.value = profileSubtitleTextNode.textContent;
-      popupProfileNode.classList.add("popup_opened");
-      break;
-    case "profile__add-button":
-      popupInputCardTitleNode.value = "";
-      popupInputCardLinkNode.value = "";
-      popupCardNode.classList.add("popup_opened");
-      break;
-    case "element__image":
-      popupImgElNode.setAttribute("src", event.target.src);
-      popupImgElNode.setAttribute("alt", event.target.alt);
-      popupImgDescrElNode.textContent = event.target.parentElement
-        .querySelector(".element__rectangle")
-        .querySelector(".element__text").textContent;
-      popupImgNode.classList.add("popup_opened");
-      break;
-  }
-=======
 function closePopupImg(event) {
   event.target.closest("div").parentElement.classList.remove(
     "popup_opened"
   );
->>>>>>> develop
 }
 
 function handleOpenFormProfile() {
@@ -129,25 +104,6 @@ function addCard(cardObject) {
   const elementHeart = newCard.querySelector(".element__heart");
   const elementBin = newCard.querySelector(".element__bin");
   titleElement.textContent = cardObject.name;
-<<<<<<< HEAD
-  imageElement.setAttribute("src", cardObject.link);
-  imageElement.setAttribute("alt", cardObject.name);
-  elementBinNode.addEventListener("click", deleteCard);
-  imageElement.addEventListener("click", openPopup);
-  elementHeartNode.addEventListener("click", changeLikeHeart);
-
-  containerCards.prepend(newCard);
-}
-
-function deleteCard(event) {
-  const imageElement = event.target.parentNode.querySelector(".element__image");
-  const elementHeartNode = event.target.parentNode.querySelector(".element__heart");
-  const elementBinNode = event.target.parentNode.querySelector(".element__bin");
-  elementBinNode.removeEventListener("click", deleteCard);
-  imageElement.removeEventListener("click", openPopup);
-  elementHeartNode.removeEventListener("click", changeLikeHeart);
-  event.target.closest(".element").remove();
-=======
   imageElement.src =  cardObject.link;
   imageElement.alt =  cardObject.name;
   elementBin.addEventListener("click", deleteCard);
@@ -170,7 +126,6 @@ function handleSubmitAddCard(evt) {
   newCard.link = popupInputCardLink.value;
   addCard(newCard);
   closePopupForm(evt);
->>>>>>> develop
 }
 
 function initDefaultCards() {
