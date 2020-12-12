@@ -127,7 +127,6 @@ function addCard(cardObject) {
   const elementHeart = newCard.querySelector(".element__heart");
   const elementBin = newCard.querySelector(".element__bin");
   titleElement.textContent = cardObject.name;
-<<<<<<< HEAD
   imageElement.setAttribute("src", cardObject.link);
   imageElement.setAttribute("alt", cardObject.name);
   elementBinNode.addEventListener("click", deleteCard);
