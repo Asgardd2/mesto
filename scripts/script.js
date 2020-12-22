@@ -148,6 +148,7 @@ popupCardSubmitButton.addEventListener("submit", handleSubmitAddCard);
 
 popupProfile.addEventListener("mousedown",closePopup);
 popupCard.addEventListener("mousedown",closePopup);
+popupImg.addEventListener("mousedown",closePopup);
 
 //Наполняем дефолтными карточками
 initDefaultCards();
