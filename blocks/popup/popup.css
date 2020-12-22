@@ -15,4 +15,5 @@
     justify-content: center;
     opacity: 0;
     transition: visibility .3s, opacity .3s linear;
+    cursor: pointer;
 }

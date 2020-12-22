@@ -4,12 +4,14 @@ const addCardButton = document.querySelector(".profile__add-button");
 const popupProfile = document.querySelector("#popup-profile");
 const popupCard = document.querySelector("#popup-card");
 const popupImg = document.querySelector("#popup-img");
+const popupMain = document.querySelector(".popup");
+
 
 const popupProfileCloseButton = popupProfile.querySelector(".popup__close-button");
 const popupAddCardCloseButton = popupCard.querySelector(".popup__close-button");
 const popupAddImgCloseButton = popupImg.querySelector(".popup__close-button");
-const popupProfileSubmitButton = popupProfile.querySelector(".popup__container_type_form-profile");
-const popupCardSubmitButton = popupCard.querySelector(".popup__container_type_form-card");
+const popupProfileSubmitButton = popupProfile.querySelector(".popup__form_type_profile");
+const popupCardSubmitButton = popupCard.querySelector(".popup__form_type_card");
 const popupImgEl = popupImg.querySelector(".popup__image");
 const popupImgDescrEl = popupImg.querySelector(".popup__image-description");
 
@@ -34,16 +36,28 @@ const templateCardElement = document.querySelector(".template-card");
 const containerCards = document.querySelector(".elements");
 
 function closePopup(event) {
-  event.target.closest(".popup").classList.remove("popup_opened");
+  console.log(event);
+  if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close-button') || event.target.classList.contains('popup__save-button')) {
+    event.target.closest(".popup").classList.remove("popup_opened");
+  }
+  document.removeEventListener('keydown', closePopupByKey); 
+  }
+  
+
+function closePopupByKey(evt) {
+  let popupInActiveState = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape' && popupInActiveState) {
+    popupInActiveState.classList.remove('popup_opened');
+  };
 }
 
 function handleOpenForm(form) {
   form.classList.add("popup_opened");
+  document.addEventListener('keydown', closePopupByKey); 
 }
 
 function handleOpenFormProfile() {
-  popupInputProfileTitle.value = profileTitleText.textContent;
-  popupInputProfileSubTitle.value = profileSubtitleText.textContent;
+  setDefaultValuesToProfileForm();
   handleOpenForm(popupProfile);
 }
 
@@ -110,6 +124,18 @@ function initDefaultCards() {
   initialCards.reverse().forEach(addCard);
 }
 
+function setDefaultValuesToProfileForm () {
+  popupInputProfileTitle.value = profileTitleText.textContent;
+  popupInputProfileSubTitle.value = profileSubtitleText.textContent;
+}
+
+function setDefaultValuesToProfileForm () {
+  popupInputProfileTitle.value = profileTitleText.textContent;
+  popupInputProfileSubTitle.value = profileSubtitleText.textContent;
+}
+
+setDefaultValuesToProfileForm();
+
 profileEditButton.addEventListener("click", handleOpenFormProfile);
 addCardButton.addEventListener("click", handleOpenFormCard);
 
@@ -119,6 +145,9 @@ popupAddImgCloseButton.addEventListener("click", closePopup);
 
 popupProfileSubmitButton.addEventListener("submit", handleSubmitChangesProfile);
 popupCardSubmitButton.addEventListener("submit", handleSubmitAddCard);
+
+popupProfile.addEventListener("mousedown",closePopup);
+popupCard.addEventListener("mousedown",closePopup);
 
 //Наполняем дефолтными карточками
 initDefaultCards();

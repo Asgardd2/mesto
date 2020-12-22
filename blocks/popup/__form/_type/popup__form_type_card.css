@@ -1,4 +1,4 @@
-.popup__container_type_form-card {
+.popup__form_type_card {
     background-color: #ffffff;
     border-radius: 10px;
     width: 240px;
@@ -9,8 +9,7 @@
 }
 
 @media screen and (min-width: 660px) {
-    .popup__container_type_form-card {
+    .popup__form_type_card {
         width: 430px;
     }
 }
-
