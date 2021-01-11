@@ -1,5 +1,5 @@
 class FormValidator {
-    
+
     constructor(validationConfig,form) {
         this._form = form;
         this._validationConfig = validationConfig;
@@ -28,20 +28,32 @@ class FormValidator {
         input.classList.remove(this._validationConfig.inputErrorClass);
     }
 
-    _setButtonState(button, isActive) {
+    _setButtonState(isActive) {
         if (isActive) {
-            button.classList.remove(this._validationConfig.inactiveButtonClass);
-            button.disabled = false;
+            this._submitButton.classList.remove(this._validationConfig.inactiveButtonClass);
+            this._submitButton.disabled = false;
         } else {
-            button.classList.add(this._validationConfig.inactiveButtonClass);
-            button.disabled = true; 
+            this._submitButton.classList.add(this._validationConfig.inactiveButtonClass);
+            this._submitButton.disabled = true; 
         }
     }
+
+    clearFormDefaultErrors() {
+        if (this._submitButton.classList.contains('popup__save-button_disabled')) {
+            this._submitButton.classList.remove('popup__save-button_disabled');
+            this._submitButton.setAttribute('disabled','false');     
+        }
+        const textElWithErrorsArray = Array.from(this._form.querySelectorAll('.popup__error'));
+        textElWithErrorsArray.forEach((el) => {
+          el.textContent = '';
+        })
+    }   
+
 
     _setEventListeners(input) {
         input.addEventListener('input', () => {
             this._checkInputValidity(input);
-            this._setButtonState(this._submitButton, this._form.checkValidity());
+            this._setButtonState(this._form.checkValidity());
         })
     }
 

@@ -1,16 +1,9 @@
-
 class Card {
 
-    constructor(cardObject, templateCardElement) {   
+    constructor(cardObject, templateCardElement, handleOpenImg) {
+      this._handleOpenImg = handleOpenImg; 
+      this._cardObject = cardObject; 
       this._cardEl = templateCardElement.content.cloneNode(true);
-      this._popupImg = document.querySelector("#popup-img");
-      this._popupImgEl = this._popupImg.querySelector(".popup__image");
-      this._titleElement = this._cardEl.querySelector(".element__text");
-      this._imageElement = this._cardEl.querySelector(".element__image");
-      this._elementHeart = this._cardEl.querySelector(".element__heart");
-      this._elementBin = this._cardEl.querySelector(".element__bin");
-      this._setHtmlMarkup(cardObject);
-      this._setCardEventListeners();
     }
   
     _setHtmlMarkup(newCard) {
@@ -22,15 +15,10 @@ class Card {
     _setCardEventListeners () {
       this._elementBin.addEventListener("click", this._deleteCard);
       this._elementHeart.addEventListener("click", this._changeLikeHeart);
+      this._imageElement.addEventListener("click", () => { this._handleOpenImg(this._cardObject )}); 
     }
 
     _deleteCard (evt) {
-      const parentOftarget = evt.target.parentNode;
-      const imageElement = parentOftarget.querySelector(".element__image");
-      const elementHeart = parentOftarget.querySelector(".element__heart");
-      const elementBin = parentOftarget.querySelector(".element__bin");
-      elementBin.removeEventListener("click", this._deleteCard);
-      elementHeart.removeEventListener("click", this._changeLikeHeart);
       evt.target.closest(".element").remove();
     }
   
@@ -39,8 +27,16 @@ class Card {
     }
   
     getFullObj ()  {
+      this._titleElement = this._cardEl.querySelector(".element__text");
+      this._imageElement = this._cardEl.querySelector(".element__image");
+      this._elementHeart = this._cardEl.querySelector(".element__heart");
+      this._elementBin = this._cardEl.querySelector(".element__bin");
+      this._setHtmlMarkup(this._cardObject);
+      this._setCardEventListeners();
       return this._cardEl;
     }
+
+
     
   }
 
