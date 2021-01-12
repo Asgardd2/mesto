@@ -50,13 +50,8 @@ const popupProfile = document.querySelector("#popup-profile");
 const popupCard = document.querySelector("#popup-card");
 const popupImg = document.querySelector("#popup-img");
 
-const popupProfileCloseButton = popupProfile.querySelector(".popup__close-button");
-const popupAddCardCloseButton = popupCard.querySelector(".popup__close-button");
-const popupAddImgCloseButton = popupImg.querySelector(".popup__close-button");
 const popupProfileSubmit = popupProfile.querySelector(".popup__form_type_profile");
-const popupProfileSubmitButton = popupProfileSubmit.querySelector(".popup__save-button");
 const popupCardSubmit = popupCard.querySelector(".popup__form_type_card");
-const popupCardSubmitButton = popupCardSubmit.querySelector(".popup__save-button");
 const popupImgEl = popupImg.querySelector(".popup__image");
 const popupImgDescrEl = popupImg.querySelector(".popup__image-description");
 
@@ -96,19 +91,14 @@ function openPopup(popup) {
 
 function handleOpenFormProfile() {
   setDefaultValuesToProfileForm();
-  clearFormText(popupProfile);
+  profileValidator.resetValidation();
   openPopup(popupProfile);
-}
-
-function clearFormText (popup) {
-  const formValidation = new FormValidator(validationConfig,popup);
-  formValidation.clearFormDefaultErrors();
 }
 
 function handleOpenFormCard() {
   popupInputCardTitle.value = "";
   popupInputCardLink.value = "";
-  clearFormText(popupCard);
+  addCardValidator.resetValidation()
   openPopup(popupCard);
 }
 
@@ -150,20 +140,16 @@ function initDefaultCards() {
   } );
 }
 
-function enableValidation(config) {
-  const forms = document.querySelectorAll(config.formSelector);
-  forms.forEach((form) => {
-      
-      const newValidate = new FormValidator(config,form);
-      newValidate.enableValidation();
-      
-  });
-}
-
 function setDefaultValuesToProfileForm () {
   popupInputProfileTitle.value = profileTitleText.textContent;
   popupInputProfileSubTitle.value = profileSubtitleText.textContent;
 }
+
+const profileValidator = new FormValidator(validationConfig, popupProfileSubmit);
+profileValidator.enableValidation();
+
+const addCardValidator = new FormValidator(validationConfig, popupCardSubmit);
+addCardValidator.enableValidation();
 
 profileEditButton.addEventListener("click", handleOpenFormProfile);
 addCardButton.addEventListener("click", handleOpenFormCard);
@@ -175,6 +161,4 @@ popupImg.addEventListener("mousedown",handleClosePopup);
 
 //Наполняем дефолтными карточками
 initDefaultCards();
-//Включаем валидацию
-enableValidation(validationConfig);
 

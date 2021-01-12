@@ -38,17 +38,12 @@ class FormValidator {
         }
     }
 
-    clearFormDefaultErrors() {
-        if (this._submitButton.classList.contains('popup__save-button_disabled')) {
-            this._submitButton.classList.remove('popup__save-button_disabled');
-            this._submitButton.setAttribute('disabled','false');     
-        }
-        const textElWithErrorsArray = Array.from(this._form.querySelectorAll('.popup__error'));
-        textElWithErrorsArray.forEach((el) => {
-          el.textContent = '';
+    resetValidation() {
+        this._inputsList.forEach((input) => {
+            this._hideError(input)
         })
-    }   
-
+        this._setButtonState(this._form.checkValidity());
+    } 
 
     _setEventListeners(input) {
         input.addEventListener('input', () => {
