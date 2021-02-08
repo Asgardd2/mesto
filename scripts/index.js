@@ -41,7 +41,8 @@ const validationConfig = {
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error_visible',
+  containerCards: '.elements'
 };
 
 //Открытие и закрытие попапа
@@ -65,7 +66,7 @@ const popupInputCardTitle = popupCard.querySelector(".popup__input_type_card-tit
 const popupInputCardLink = popupCard.querySelector(".popup__input_type_card-img-link");
 
 const templateCardElement = document.querySelector(".template-card");
-const containerCards = document.querySelector(".elements");
+//const containerCards = document.querySelector(".elements");
 
 function handleClosePopup(event) {
   if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close-button') || event.target.classList.contains('popup__save-button')) {
@@ -110,9 +111,11 @@ function handleOpenImg(data) {
   openPopup(popupImg);
 }
 
+/*
 function addCard(cardObject) {
   containerCards.prepend(cardObject);
 }
+*/
 
 function handleSubmitChangesProfile(evt) {
   evt.preventDefault();
@@ -134,12 +137,14 @@ function createCard(item) {
   return newCard.getFullObj()
 }
 
+/*
 function initDefaultCards() {
   initialCards.reverse().forEach((val) => {
     const newCard = createCard(val)
     addCard(newCard);
   } );
 }
+*/
 
 function setDefaultValuesToProfileForm () {
   popupInputProfileTitle.value = profileTitleText.textContent;
@@ -161,5 +166,16 @@ popupCard.addEventListener("mousedown",handleClosePopup);
 popupImg.addEventListener("mousedown",handleClosePopup);
 
 //Наполняем дефолтными карточками
-initDefaultCards();
+//initDefaultCards();
 
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const newcard = new Card(item,templateCardElement, handleOpenImg).getFullObj();
+    cardsList.addItem(newcard);
+    },
+  },
+  validationConfig.containerCards
+);
+
+cardsList.renderItems();s
