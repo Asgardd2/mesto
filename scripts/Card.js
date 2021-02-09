@@ -15,7 +15,7 @@ class Card {
     _setCardEventListeners () {
       this._elementBin.addEventListener("click", this._deleteCard);
       this._elementHeart.addEventListener("click", this._changeLikeHeart);
-      this._imageElement.addEventListener("click", () => { this._handleOpenImg(this._cardObject )}); 
+      this._imageElement.addEventListener("click", () => { this._handleOpenImg(this._cardObject)}); 
     }
 
     _deleteCard (evt) {
