@@ -1,0 +1,15 @@
+.popup__form_type_card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 240px;
+    max-width: 1100px;
+    box-sizing: border-box;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+@media screen and (min-width: 660px) {
+    .popup__form_type_card {
+        width: 430px;
+    }
+}

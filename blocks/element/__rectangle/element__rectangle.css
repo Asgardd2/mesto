@@ -1,0 +1,11 @@
+.element__rectangle {
+    background-color: #ffffff;
+    width: 282px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+}

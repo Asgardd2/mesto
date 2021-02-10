@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Место</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="<%=require('./images/header-logo.svg')%>" alt="Логотип сервиса Место" class="header__logo" />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar" />
+        <div class="profile__info">
+          <div class="profile__title">
+            <h1 class="profile__title-text">Жак-Ив Кусто</h1>
+            <button aria-label="Edit" type="button" class="profile__edit-button"></button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button aria-label="Add" type="button" class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <!--Сюда подставляем с помощью js (при открытии - инициализация из массива js скрипта) -->
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">
+        © 2020 Mesto Russia
+      </p>
+    </footer>
+
+  </div>
+
+  <div class="popup" id="popup-profile">
+    <form name="formToChangeProfile" class="popup__form popup__form_type_profile">
+      <button aria-label="Close" type="button" class="popup__close-button"></button>
+      <h2 class="popup__title popup__title_type_profile">Редактировать профиль</h2>
+      <input
+        id="profile-name" 
+        minlength="2"
+        maxlength="40"
+        placeholder="Заголовок" 
+        required 
+        type="text" 
+        value="Жак-Ив Кусто"
+        class="popup__input popup__input_type_profile-title">
+      <span id="profile-name-error" class="popup__error"></span>
+      <input 
+        id="profile-about"
+        minlength="2"
+        maxlength="200"
+        placeholder="Подзаголовок" 
+        value="Исследователь океана"
+        required 
+        type="text" 
+        class="popup__input popup__input_type_profile-subtitle">
+      <span id="profile-about-error" class="popup__error"></span>
+      <button type="submit" class="popup__save-button">Сохранить</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-card">
+    <form name="formToAddCard" class="popup__form popup__form_type_card">
+      <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
+      <h2 class="popup__title popup__title_type_card">Новое место</h2>
+      <input
+        id="card-name"
+        minlength="2"
+        maxlength="30" 
+        placeholder="Название" 
+        required type="text"
+        class="popup__input popup__input_type_card-title">
+      <span id="card-name-error" class="popup__error"></span>
+      <input 
+        id="card-url"
+        placeholder="Ссылка на картинку" 
+        required 
+        type="url" 
+        class="popup__input popup__input_type_card-img-link">
+      <span id="card-url-error" class="popup__error"></span>
+      <button type="submit" class="popup__save-button">Создать</button>
+    </form>
+  </div>
+
+  <div class="popup popup_type_img" id="popup-img">
+    <div class="popup__container popup__container_type_img">
+      <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
+      <img class="popup__image" alt="Ошибка" />
+      <h2 class="popup__image-description">Новое место</h2>
+    </div>
+  </div>
+
+  <template class="template-card">
+    <div class="element">
+      <button aria-label="Delete" type="button" class="element__bin"></button>
+      <img class="element__image" alt="Ошибка" />
+      <div class="element__rectangle">
+        <h2 class="element__text"></h2>
+        <button aria-label="Like" type="button" class="element__heart"></button>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="scripts/index.js"></script>
+  <script type="module" src="scripts/Card.js"></script>
+  <script type="module" src="scripts/FormValidator.js"></script>
+
+</body>
+
+</html>
