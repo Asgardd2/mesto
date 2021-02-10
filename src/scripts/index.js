@@ -5,6 +5,46 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 
+import '../pages/index.css';
+
+/*
+const archiz = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
+const chekyabinsk = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg', import.meta.url);
+const ivanovo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg', import.meta.url)
+
+const kamchatka = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg', import.meta.url)
+const holmogorsk = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg"', import.meta.url)
+const baikal = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg', import.meta.url)
+
+
+const initialCards = [
+  {
+    name: "Архыз",
+    link: archiz
+  },
+  {
+    name: "Челябинская область",
+    link: chekyabinsk
+  },
+  {
+    name: "Иваново",
+    link: ivanovo
+  },
+  {
+    name: "Камчатка",
+    link: kamchatka
+  },
+  {
+    name: "Холмогорский район",
+    link: holmogorsk
+  },
+  {
+    name: "Байкал",
+    link: baikal
+  },
+];
+*/
+
 const initialCards = [
   {
     name: "Архыз",

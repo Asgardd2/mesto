@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./pages/index.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Место</title>
 </head>
@@ -11,11 +10,11 @@
 <body>
   <div class="page">
     <header class="header">
-      <img src="./images/header-logo.svg" alt="Логотип сервиса Место" class="header__logo" />
+      <img src="<%=require('./images/header-logo.svg')%>" alt="Логотип сервиса Место" class="header__logo" />
     </header>
     <main class="content">
       <section class="profile">
-        <img src="./images/profile__avatar.jpg" alt="Аватар профиля" class="profile__avatar" />
+        <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__title-text">Жак-Ив Кусто</h1>
@@ -92,7 +91,7 @@
   <div class="popup popup_type_img" id="popup-img">
     <div class="popup__container popup__container_type_img">
       <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
-      <img src="http://yandex.ru" class="popup__image" alt="Ошибка" />
+      <img class="popup__image" alt="Ошибка" />
       <h2 class="popup__image-description">Новое место</h2>
     </div>
   </div>
@@ -100,7 +99,7 @@
   <template class="template-card">
     <div class="element">
       <button aria-label="Delete" type="button" class="element__bin"></button>
-      <img src="http://yandex.ru" class="element__image" alt="Ошибка" />
+      <img class="element__image" alt="Ошибка" />
       <div class="element__rectangle">
         <h2 class="element__text"></h2>
         <button aria-label="Like" type="button" class="element__heart"></button>
