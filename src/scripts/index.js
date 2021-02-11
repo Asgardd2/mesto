@@ -1,82 +1,12 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {initialCards} from'./init.js';
 import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 
 import '../pages/index.css';
-
-/*
-const archiz = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
-const chekyabinsk = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg', import.meta.url);
-const ivanovo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg', import.meta.url)
-
-const kamchatka = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg', import.meta.url)
-const holmogorsk = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg"', import.meta.url)
-const baikal = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg', import.meta.url)
-
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: archiz
-  },
-  {
-    name: "Челябинская область",
-    link: chekyabinsk
-  },
-  {
-    name: "Иваново",
-    link: ivanovo
-  },
-  {
-    name: "Камчатка",
-    link: kamchatka
-  },
-  {
-    name: "Холмогорский район",
-    link: holmogorsk
-  },
-  {
-    name: "Байкал",
-    link: baikal
-  },
-];
-*/
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 const config = {
   formSelector: '.popup__form',
@@ -88,7 +18,8 @@ const config = {
   containerCards: '.elements',
   popupProfile: '#popup-profile',
   popupCard: '#popup-card',
-  popupImg: '#popup-img'
+  popupImg: '#popup-img',
+  escKey: 'Escape'
 };
 
 //Открытие и закрытие попапа
@@ -111,9 +42,12 @@ const jobEditProfile = document.querySelector('#profile-about');
 
 function handleSubmitChangesProfile(submitData) {
   userInfo.setUserInfo(submitData['profile-name'],submitData['profile-about']);
+  this.close();
+  /*
   const tekUserInfo = userInfo.getUserInfo();
   profileTitleText.textContent = tekUserInfo.name;
   profileSubtitleText.textContent = tekUserInfo.job;
+  */
 }
 
 function handleSubmitAddCard(submitData) {
@@ -121,25 +55,28 @@ function handleSubmitAddCard(submitData) {
   newCardInputData.name = submitData['card-name'];
   newCardInputData.link = submitData['card-url'];
   const newCard = new Card(newCardInputData,templateCardElement, popupWithImage.open.bind(popupWithImage)).getFullObj();
-  containerCards.prepend(newCard);
+  cardsList.addItem(newCard);
+  popupWithFormCard.setDefaultValues([['#card-name',''],['#card-url','']]); 
+  this.close();
+  //containerCards.prepend(newCard);
 }
 
-const userInfo = new UserInfo(nameEditProfile,jobEditProfile);
+const userInfo = new UserInfo(nameEditProfile.value,jobEditProfile.value,profileTitleText,profileSubtitleText);
 
-const profileValidator = new FormValidator(config, popupProfileSubmit);
-profileValidator.enableValidation();
-
-const addCardValidator = new FormValidator(config, popupCardSubmit);
-addCardValidator.enableValidation();
-
-const popupWithImage = new PopupWithImage(config.popupImg);
+const popupWithImage = new PopupWithImage(config.popupImg,config.escKey);
 popupWithImage.setEventListeners();
 
-const popupWithFormProfile = new PopupWithForm(config.popupProfile,false,handleSubmitChangesProfile);
+const popupWithFormProfile = new PopupWithForm(config.popupProfile,handleSubmitChangesProfile,config.escKey);
 popupWithFormProfile.setEventListeners();
 
-const popupWithFormCard = new PopupWithForm(config.popupCard,true,handleSubmitAddCard);
+const popupWithFormCard = new PopupWithForm(config.popupCard,handleSubmitAddCard,config.escKey);
 popupWithFormCard.setEventListeners();
+
+const profileValidator = new FormValidator(config, popupProfileSubmit,popupWithFormProfile);
+profileValidator.enableValidation();
+
+const addCardValidator = new FormValidator(config, popupCardSubmit,popupWithFormCard);
+addCardValidator.enableValidation();
 
 const cardsList = new Section({
   items: initialCards,
@@ -155,6 +92,10 @@ cardsList.renderItems();
 
 profileEditButton.addEventListener("click", () => {
   popupWithFormProfile.open();
-  popupWithFormProfile.setDefaultValues(userInfo.getUserInfo()); 
+  popupWithFormProfile.setDefaultValues([['#profile-name',userInfo.getUserInfo().name],['#profile-about',userInfo.getUserInfo().job]]); 
+  profileValidator.setButtonState(true);
 });
-addCardButton.addEventListener("click", popupWithFormCard.open.bind(popupWithFormCard));
+addCardButton.addEventListener("click",() => { 
+  popupWithFormCard.open();
+  addCardValidator.setButtonState(false);
+});

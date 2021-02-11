@@ -3,7 +3,7 @@ class Card {
     constructor(cardObject, templateCardElement, handleOpenImg) {
       this._handleOpenImg = handleOpenImg; 
       this._cardObject = cardObject; 
-      this._cardEl = templateCardElement.content.cloneNode(true);
+      this._cardEl = templateCardElement.content.querySelector('.element').cloneNode(true);
     }
   
     _setHtmlMarkup(newCard) {
@@ -13,13 +13,13 @@ class Card {
     }
   
     _setCardEventListeners () {
-      this._elementBin.addEventListener("click", this._deleteCard);
+      this._elementBin.addEventListener("click", this._deleteCard.bind(this));
       this._elementHeart.addEventListener("click", this._changeLikeHeart);
       this._imageElement.addEventListener("click", () => { this._handleOpenImg(this._cardObject)}); 
     }
 
     _deleteCard (evt) {
-      evt.target.closest(".element").remove();
+      this._cardEl.remove();
     }
   
     _changeLikeHeart (evt) {

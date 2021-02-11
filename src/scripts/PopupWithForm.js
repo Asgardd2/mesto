@@ -1,10 +1,9 @@
 import Popup from './Popup.js';
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector,isDisabledSubmitButton,submitFunc) {
-        super(popupSelector);
+    constructor(popupSelector,submitFunc,closeKey) {
+        super(popupSelector,closeKey);
         this._submitFunc = submitFunc;
-        this._isDisabledSubmitButton = isDisabledSubmitButton;
-        this._getInputValues();
+
     }
 
     _getInputValues() {
@@ -23,13 +22,9 @@ export default class PopupWithForm extends Popup {
     }
     
     setDefaultValues(defaultData) {
-        if (defaultData.name) {
-            this._popupEl.querySelector('#profile-name').value = defaultData.name;
-        }
-
-        if (defaultData.job) {
-            this._popupEl.querySelector('#profile-about').value = defaultData.job;
-        }
+        defaultData.forEach(el => {
+            this._popupEl.querySelector(el[0]).value = el[1];
+        })
     }
     close () {
        
@@ -40,13 +35,5 @@ export default class PopupWithForm extends Popup {
 
     open () {
         super.open();
-        if (this._isDisabledSubmitButton) {
-            this._popupEl.querySelector('.popup__save-button').classList.add('popup__save-button_disabled')
-            this._popupEl.querySelector('.popup__save-button').disabled = true;
-        }
-        else {
-            this._popupEl.querySelector('.popup__save-button').classList.remove('popup__save-button_disabled')
-            this._popupEl.querySelector('.popup__save-button').disabled = false;
-        }
     }
 }

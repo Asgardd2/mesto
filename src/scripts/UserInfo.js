@@ -1,9 +1,9 @@
 export default class UserInfo {
-    constructor(nameEl, jobEl) {
-        this._nameEl = nameEl;
-        this._jobEl = jobEl;
-        this._name  = this._nameEl.value;
-        this._job = this._jobEl.value;
+    constructor(nameElVal,jobElVal,profileTitleTextEl,profileSubtitleTextEl) {
+        this._name  = nameElVal;
+        this._job = jobElVal;
+        this._profileTitleTextEl = profileTitleTextEl;
+        this._profileSubtitleTextEl = profileSubtitleTextEl;
     }
 
     getUserInfo () {
@@ -15,6 +15,9 @@ export default class UserInfo {
 
     setUserInfo(newName,newJob) {
         this._name = newName;
-        this._job = newJob;
+        this._job = newJob; 
+        const tekUserInfo = this.getUserInfo();
+        this._profileTitleTextEl.textContent = tekUserInfo.name;
+        this._profileSubtitleTextEl.textContent = tekUserInfo.job;
     }
 }
