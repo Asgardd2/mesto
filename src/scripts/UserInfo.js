@@ -1,23 +1,18 @@
 export default class UserInfo {
-    constructor(nameElVal,jobElVal,profileTitleTextEl,profileSubtitleTextEl) {
-        this._name  = nameElVal;
-        this._job = jobElVal;
-        this._profileTitleTextEl = profileTitleTextEl;
-        this._profileSubtitleTextEl = profileSubtitleTextEl;
-    }
-
-    getUserInfo () {
+    constructor(nameSelector, infoSelector) {
+        this._userName = document.querySelector(`.${nameSelector}`);
+        this._userInfo = document.querySelector(`.${infoSelector}`);
+      }
+    
+      getUserInfo() {
         return {
-            name: this._name,
-            job: this._job
+          userName: this._userName.textContent,
+          userDescription: this._userInfo.textContent
         }
-    }
-
-    setUserInfo(newName,newJob) {
-        this._name = newName;
-        this._job = newJob; 
-        const tekUserInfo = this.getUserInfo();
-        this._profileTitleTextEl.textContent = tekUserInfo.name;
-        this._profileSubtitleTextEl.textContent = tekUserInfo.job;
-    }
+      }
+    
+      setUserInfo(newName, newInfo) {
+        this._userName.textContent = newName;
+        this._userInfo.textContent = newInfo;
+      } 
 }

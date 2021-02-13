@@ -19,35 +19,23 @@ const config = {
   popupProfile: '#popup-profile',
   popupCard: '#popup-card',
   popupImg: '#popup-img',
-  escKey: 'Escape'
+  escKey: 'Escape',
+  profileTitleClass: 'profile__title-text',
+  profileSubtitleClass: 'profile__subtitle'
 };
 
-//Открытие и закрытие попапа
+//Определяем константы
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
-const profileTitleText = document.querySelector(".profile__title-text");
-
 const popupProfile = document.querySelector(config.popupProfile);
 const popupCard = document.querySelector(config.popupCard);
-
-const profileSubtitleText = document.querySelector(".profile__subtitle");
 const popupProfileSubmit = popupProfile.querySelector(".popup__form_type_profile");
 const popupCardSubmit = popupCard.querySelector(".popup__form_type_card");
-
 const templateCardElement = document.querySelector(".template-card");
-const containerCards = document.querySelector(".elements");
-
-const nameEditProfile = document.querySelector('#profile-name');
-const jobEditProfile = document.querySelector('#profile-about');
 
 function handleSubmitChangesProfile(submitData) {
   userInfo.setUserInfo(submitData['profile-name'],submitData['profile-about']);
   this.close();
-  /*
-  const tekUserInfo = userInfo.getUserInfo();
-  profileTitleText.textContent = tekUserInfo.name;
-  profileSubtitleText.textContent = tekUserInfo.job;
-  */
 }
 
 function handleSubmitAddCard(submitData) {
@@ -61,7 +49,7 @@ function handleSubmitAddCard(submitData) {
   //containerCards.prepend(newCard);
 }
 
-const userInfo = new UserInfo(nameEditProfile.value,jobEditProfile.value,profileTitleText,profileSubtitleText);
+const userInfo = new UserInfo(config.profileTitleClass,config.profileSubtitleClass);
 
 const popupWithImage = new PopupWithImage(config.popupImg,config.escKey);
 popupWithImage.setEventListeners();
@@ -92,7 +80,7 @@ cardsList.renderItems();
 
 profileEditButton.addEventListener("click", () => {
   popupWithFormProfile.open();
-  popupWithFormProfile.setDefaultValues([['#profile-name',userInfo.getUserInfo().name],['#profile-about',userInfo.getUserInfo().job]]); 
+  popupWithFormProfile.setDefaultValues([['#profile-name',userInfo.getUserInfo().userName],['#profile-about',userInfo.getUserInfo().userDescription]]); 
   profileValidator.setButtonState(true);
 });
 addCardButton.addEventListener("click",() => { 
