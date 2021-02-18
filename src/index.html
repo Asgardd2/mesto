@@ -14,13 +14,17 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar" />
+        <div class="profile__avatar">
+          <img src="" alt="Аватар профиля" class="profile__avatar-photo" /> <!--<%=require('./images/profile__avatar.jpg')%>-->
+          <button aria-label="Delete" type="button" class="profile__avatar-button"></button>
+        </div>
+
         <div class="profile__info">
           <div class="profile__title">
-            <h1 class="profile__title-text">Жак-Ив Кусто</h1>
+            <h1 class="profile__title-text"></h1>
             <button aria-label="Edit" type="button" class="profile__edit-button"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
@@ -88,6 +92,29 @@
     </form>
   </div>
 
+  <div class="popup" id="popup-avatar">
+    <form name="formToChangeAvatar" class="popup__form popup__form_type_avatar">
+      <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
+      <h2 class="popup__title popup__title_type_avatar">Обновить аватар</h2>
+      <input 
+        id="avatar-url"
+        placeholder="Ссылка на картинку" 
+        required 
+        type="url" 
+        class="popup__input popup__input_type_avatar-img-link">
+      <span id="avatar-url-error" class="popup__error"></span>
+      <button type="submit" class="popup__save-button popup__save-button_type_avatar">Сохранить</button>
+    </form>
+  </div>
+
+  <div class="popup popup_type_deleteCard" id="popup-card-delete">
+    <div class="popup_container popup__container_type_card-delete">
+      <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
+      <p class="popup__approve-question">Вы уверены?</p>
+      <button type="button" class="popup__approve-button">Да</button>
+    </div>
+  </div>
+
   <div class="popup popup_type_img" id="popup-img">
     <div class="popup__container popup__container_type_img">
       <button aria-label="Close" type="button" class="popup__close-button popup__close-button_position_right"></button>
@@ -102,7 +129,11 @@
       <img class="element__image" alt="Ошибка" />
       <div class="element__rectangle">
         <h2 class="element__text"></h2>
-        <button aria-label="Like" type="button" class="element__heart"></button>
+        <div class="element__likes">
+          <button aria-label="Like" type="button" class="element__heart"></button>
+          <p class="element__heartLikes"></p>
+        </div>
+       
       </div>
     </div>
   </template>

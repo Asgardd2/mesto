@@ -25,3 +25,6 @@
         margin-top: 15px;
     }
 }
+.profile__edit-button:hover ~ .profile__avatar-photo {
+    opacity: 0.2;
+  }

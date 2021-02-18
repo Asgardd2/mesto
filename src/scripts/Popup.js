@@ -1,4 +1,3 @@
-
 export default class Popup {
     constructor(popupSelector,closeKey) {
         this._popupEl = document.querySelector(popupSelector);

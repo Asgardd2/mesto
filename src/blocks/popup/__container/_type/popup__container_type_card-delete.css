@@ -1,0 +1,15 @@
+.popup__container_type_card-delete {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    width: 282px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+@media screen and (min-width: 660px) {
+    .popup__container_type_card-delete {
+        width: 430px;
+    }
+}
