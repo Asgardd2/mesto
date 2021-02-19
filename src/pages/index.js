@@ -1,11 +1,11 @@
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithQuestionDeleteCard from './PopupWithQuestionDeleteCard.js';
-import UserInfo from './UserInfo.js';
-import Api from './Api.js';
+import {Card} from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithQuestionDeleteCard from '../components/PopupWithQuestionDeleteCard.js';
+import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import '../pages/index.css';
 
 const config = {
@@ -46,18 +46,23 @@ const popupCardSubmit = popupCard.querySelector(".popup__form_type_card");
 const popupAvatarSubmit = document.querySelector(".popup__form_type_avatar");
 const templateCardElement = document.querySelector(".template-card");
 
+function createCard(cardData,cardEl,openImgFunc,openDeleteCardPopupFunc,likeCardFunc) { 
+   const newcard = new Card(cardData,cardEl,openImgFunc,openDeleteCardPopupFunc,likeCardFunc);
+   return newcard;
+}
+
 function handleSubmitChangesProfile(submitData) {
   popupProfile.querySelector(config.submitButtonSelector).textContent = textForSaveButtonWait;
-  userInfo.setUserInfo(submitData['profile-name'],submitData['profile-about']);
   api.setProfileName(submitData['profile-name'],submitData['profile-about']) 
   .then((result) => {
+    userInfo.setUserInfo(submitData['profile-name'],submitData['profile-about']);
     })
   .catch((err) => {
     console.log('Ошибка на этапе загрузки данных в профиль: ' + err); // выведем ошибку в консоль
   })
   .finally(() => {
     popupProfile.querySelector(config.submitButtonSelector).textContent = textForSaveButton;
-    this.close();});
+    popupProfile.close();});
 }
 
 function handleSubmitChangeAvatar() {
@@ -73,7 +78,7 @@ function handleSubmitChangeAvatar() {
   })
   .finally(() => {
     popupAvatar.querySelector(config.submitButtonSelector).textContent = textForSaveButton;
-    this.close();});
+    popupAvatar.close();});
   }
 
 function handleSubmitAddCard(submitData) {
@@ -87,9 +92,9 @@ function handleSubmitAddCard(submitData) {
     newCardInputData._idCard = result._id;
     newCardInputData._idOwner = result.owner._id;
     newCardInputData.likes = result.likes;
-    const newCard = new Card(newCardInputData,templateCardElement, popupWithImage.open.bind(popupWithImage),popupWithQuestionDeleteCard.open.bind(popupWithQuestionDeleteCard),handlLikeCard);
+    const newCard = createCard(newCardInputData,templateCardElement, popupWithImage.open.bind(popupWithImage),popupWithQuestionDeleteCard.open.bind(popupWithQuestionDeleteCard),handlLikeCard);
     cardsList.addItem(newCard.getFullObj(1));
-    this.close();
+    popupWithFormCard.close();
   })
   .catch((err) => {
     console.log('Ошибка на этапе добавления новой карточки: ' + err); // выведем ошибку в консоль
@@ -97,15 +102,15 @@ function handleSubmitAddCard(submitData) {
   .finally(() => {
     popupWithFormCard.setDefaultValues([['#card-name',''],['#card-url','']]); 
     popupCard.querySelector(config.submitButtonSelector).textContent = textForCreateButton;
-    this.close();});
+    popupWithFormCard.close();});
 }
 
 function handleApproveDeleteCard() {
-  popupWithQuestionDeleteCard.cardEl.remove();
   popupWithQuestionDeleteCard.close();
   api.deleteCard(popupWithQuestionDeleteCard.cardId)
   .then((result) => {
-      console.log('asd');
+      popupWithQuestionDeleteCard.cardEl.remove();
+      //console.log('asd');
   })
   .catch((err) => {
     console.log('Ошибка на этапе удаления карточки: ' + err); // выведем ошибку в консоль

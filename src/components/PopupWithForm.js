@@ -3,7 +3,6 @@ export default class PopupWithForm extends Popup {
     constructor(popupSelector,submitFunc,closeKey) {
         super(popupSelector,closeKey);
         this._submitFunc = submitFunc;
-
     }
 
     getInputValues() {
@@ -33,7 +32,4 @@ export default class PopupWithForm extends Popup {
         super.close();
     }
 
-    open () {
-        super.open();
-    }
 }
